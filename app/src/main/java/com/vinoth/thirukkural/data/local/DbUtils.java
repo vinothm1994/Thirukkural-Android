@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.model.KuralChapter;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DbUtils {
@@ -163,15 +165,21 @@ public class DbUtils {
 
     public static List<KuralChapter> parserChapter(Cursor cursor){
         List<KuralChapter> kuralChaptergroups=new ArrayList<>();
+        int columnIndex = cursor.getColumnIndex(DBContract.ChapterContract.ID);
+        int columnIndex1 = cursor.getColumnIndex(DBContract.ChapterContract.CHAPTER_GROUP_ID);
+        int columnIndex2 = cursor.getColumnIndex(DBContract.ChapterContract.ENGLISH);
+        int columnIndex3 = cursor.getColumnIndex(DBContract.ChapterContract.TAMIL);
+        int columnIndex4 = cursor.getColumnIndex(DBContract.ChapterContract.TRANSLITERATION);
         while (cursor.moveToNext()){
             KuralChapter kuralSection=new KuralChapter();
-            kuralSection.setId(cursor.getInt(cursor.getColumnIndex(DBContract.ChapterContract.ID)));
-            kuralSection.setChapterGroupId(cursor.getInt(cursor.getColumnIndex(DBContract.ChapterContract.CHAPTER_GROUP_ID)));
-            kuralSection.setName(cursor.getString(cursor.getColumnIndex(DBContract.ChapterContract.ENGLISH)));
-            kuralSection.setTamilName(cursor.getString(cursor.getColumnIndex(DBContract.ChapterContract.TAMIL)));
-            kuralSection.setTransliteration(cursor.getString(cursor.getColumnIndex(DBContract.ChapterContract.TRANSLITERATION)));
+            kuralSection.setId(cursor.getInt(columnIndex));
+            kuralSection.setChapterGroupId(cursor.getInt(columnIndex1));
+            kuralSection.setName(cursor.getString(columnIndex2));
+            kuralSection.setTamilName(cursor.getString(columnIndex3));
+            kuralSection.setTransliteration(cursor.getString(columnIndex4));
             kuralChaptergroups.add(kuralSection);
         }
+        cursor.close();
         return kuralChaptergroups;
     }
 

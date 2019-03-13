@@ -5,10 +5,13 @@ import android.util.Log;
 
 import com.vinoth.thirukkural.data.AppDataManager;
 import com.vinoth.thirukkural.data.local.DbUtils;
+import com.vinoth.thirukkural.data.local.KuralDbHelper;
 import com.vinoth.thirukkural.data.model.KuralChapter;
 import com.vinoth.thirukkural.data.model.KuralChapterGroup;
 import com.vinoth.thirukkural.data.model.KuralDetail;
 import com.vinoth.thirukkural.data.model.KuralSection;
+import com.vinoth.thirukkural.ui.home.HomeFragment;
+import com.vinoth.thirukkural.ui.kural_detail.KuralDetailFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,13 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppDataManager appDataManager = new AppDataManager(this);
-        long s = System.currentTimeMillis();
-        List<KuralDetail> detailList = appDataManager.getAllKuralDetails();
-        int size = detailList.size();
-        Log.i(TAG, "onCreate: " + (System.currentTimeMillis() - s));
-
-
+         getSupportFragmentManager().beginTransaction().add(android.R.id.content,new HomeFragment(),"ddddd").commit();
     }
 
 
