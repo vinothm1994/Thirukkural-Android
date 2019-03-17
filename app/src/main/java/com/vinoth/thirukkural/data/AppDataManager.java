@@ -18,12 +18,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+
 public class AppDataManager {
+    private static AppDataManager appDataManager;
     private final KuralDbHelper kuralDbHelper;
 
     public AppDataManager(Context context) {
         KuralDbHelper.intiDb(context);
         kuralDbHelper = KuralDbHelper.getInstance();
+    }
+
+    public static AppDataManager getInstance(@NonNull Context context) {
+        if (appDataManager == null)
+            appDataManager = new AppDataManager(context.getApplicationContext());
+        return appDataManager;
     }
 
 
@@ -129,25 +138,51 @@ public class AppDataManager {
         return kuralDetails.get(0);
     }
 
-    public List<Quartet<KuralSection, KuralChapterGroup, KuralChapter,KuralDetail>> getAll(){
-
-        List<KuralSection> section=getAllkuralSection();
-        Map<Integer,KuralSection> sectionHashMap=new HashMap<>(section.size());
-        for (KuralSection i : section) sectionHashMap.put(i.getId(),i);
+    public List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> getAll() {
+        List<KuralSection> section = getAllkuralSection();
+        Map<Integer, KuralSection> sectionHashMap = new HashMap<>(section.size());
+        for (KuralSection i : section) sectionHashMap.put(i.getId(), i);
         List<KuralChapterGroup> groups = getAllChaptergroups();
-        Map<Integer,KuralChapterGroup> kuralChapterGroupMap=new HashMap<>(groups.size());
-        for (KuralChapterGroup i : groups) kuralChapterGroupMap.put(i.getId(),i);
-        List<KuralChapter> chapters=getAllChapters();
-        Map<Integer,KuralChapter> kuralChapterMap=new HashMap<>();
-        for (KuralChapter kuralChapter:chapters) kuralChapterMap.put(kuralChapter.getId(),kuralChapter);
-        List<KuralDetail> kuralDetails=getAllKuralDetails();
-        List<Quartet<KuralSection, KuralChapterGroup, KuralChapter,KuralDetail>>quartets=new ArrayList<>();
+        Map<Integer, KuralChapterGroup> kuralChapterGroupMap = new HashMap<>(groups.size());
+        for (KuralChapterGroup i : groups) kuralChapterGroupMap.put(i.getId(), i);
+        List<KuralChapter> chapters = getAllChapters();
+        Map<Integer, KuralChapter> kuralChapterMap = new HashMap<>();
+        for (KuralChapter kuralChapter : chapters)
+            kuralChapterMap.put(kuralChapter.getId(), kuralChapter);
+        List<KuralDetail> kuralDetails = getAllKuralDetails();
+        List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> quartets = new ArrayList<>();
         for (int i = 0; i < kuralDetails.size(); i++) {
             KuralDetail kuralDetail = kuralDetails.get(i);
             KuralChapter kuralChapter = kuralChapterMap.get(kuralDetail.getChapterId());
             KuralChapterGroup chapterGroup = kuralChapterGroupMap.get(kuralChapter.getChapterGroupId());
             KuralSection kuralSection = sectionHashMap.get(chapterGroup.getSectionId());
-            quartets.add(new Quartet<>(kuralSection,chapterGroup,kuralChapter,kuralDetail));
+            quartets.add(new Quartet<>(kuralSection, chapterGroup, kuralChapter, kuralDetail));
+        }
+
+        return quartets;
+    }
+
+    public List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> getAllByChapterId(int chapterId) {
+        List<KuralSection> section = getAllkuralSection();
+        Map<Integer, KuralSection> sectionHashMap = new HashMap<>(section.size());
+        for (KuralSection i : section)
+            sectionHashMap.put(i.getId(), i);
+        List<KuralChapterGroup> groups = getAllChaptergroups();
+        Map<Integer, KuralChapterGroup> kuralChapterGroupMap = new HashMap<>(groups.size());
+        for (KuralChapterGroup i : groups)
+            kuralChapterGroupMap.put(i.getId(), i);
+        List<KuralChapter> chapters = getAllChapters();
+        Map<Integer, KuralChapter> kuralChapterMap = new HashMap<>();
+        for (KuralChapter kuralChapter : chapters)
+            kuralChapterMap.put(kuralChapter.getId(), kuralChapter);
+        List<KuralDetail> kuralDetails = getAllKuralDetailsByChapterId(chapterId);
+        List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> quartets = new ArrayList<>();
+        for (int i = 0; i < kuralDetails.size(); i++) {
+            KuralDetail kuralDetail = kuralDetails.get(i);
+            KuralChapter kuralChapter = kuralChapterMap.get(kuralDetail.getChapterId());
+            KuralChapterGroup chapterGroup = kuralChapterGroupMap.get(kuralChapter.getChapterGroupId());
+            KuralSection kuralSection = sectionHashMap.get(chapterGroup.getSectionId());
+            quartets.add(new Quartet<>(kuralSection, chapterGroup, kuralChapter, kuralDetail));
         }
 
         return quartets;

@@ -1,6 +1,7 @@
 package com.vinoth.thirukkural.ui.kural_detail;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.vinoth.thirukkural.data.model.KuralChapter;
 import com.vinoth.thirukkural.data.model.KuralChapterGroup;
 import com.vinoth.thirukkural.data.model.KuralDetail;
 import com.vinoth.thirukkural.data.model.KuralSection;
+import com.vinoth.thirukkural.ui.home.KuralScreenListener;
 
 import java.util.List;
 
@@ -37,6 +39,14 @@ public class KuralDetailFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    private KuralScreenListener listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (KuralScreenListener) context;
+    }
+
 
 
     public KuralDetailFragment() {

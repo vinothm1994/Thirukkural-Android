@@ -1,6 +1,7 @@
 package com.vinoth.thirukkural.ui.home;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,22 +37,26 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private  KuralScreenListener listener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (KuralScreenListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_kural_section, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        RecyclerView home_rv = view.findViewById(R.id.home_rv);
-        home_rv.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> ll= new AppDataManager(getContext()).getAll();
-         adapter = new KuralAdapter(getContext(), ll, position -> {
-             getActivity().getSupportFragmentManager().beginTransaction().add(android.R.id.content, KuralDetailFragment.getInstance(adapter.getList().get(position).getValue3().getId())).addToBackStack("xx").commit();
-         });
+        RecyclerView home_rv = view.findViewById(R.id.sec_rv);
+        home_rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> ll = AppDataManager.getInstance(getContext()).getAll();
+        adapter = new KuralAdapter(getContext(), ll,listener);
         home_rv.setAdapter(adapter);
     }
 }

@@ -27,10 +27,10 @@ public class KuralAdapter extends
 
     private Context context;
     private List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list;
-    private OnItemClickListener onItemClickListener;
+    private KuralScreenListener onItemClickListener;
 
     public KuralAdapter(Context context, List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list,
-                        OnItemClickListener onItemClickListener) {
+                        KuralScreenListener onItemClickListener) {
         this.context = context;
         this.list = list;
         this.onItemClickListener = onItemClickListener;
@@ -62,9 +62,7 @@ public class KuralAdapter extends
     }
 
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -81,9 +79,29 @@ public class KuralAdapter extends
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(getLayoutPosition());
+                    onItemClickListener.launchKuralDetail(list.get(getLayoutPosition()).getValue3().getId());
                 }
             });
+            View.OnClickListener listener=v -> {
+                int id = v.getId();
+                Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item =
+                        list.get(getLayoutPosition());
+                if (id==R.id.chip2){
+                    onItemClickListener.launchChapterGroup(item.getValue0().getId());
+                }
+                else if (id==R.id.chip3){
+                    onItemClickListener.launchChapter(item.getValue1().getId());
+                }
+                else if (id==R.id.chip4){
+                    onItemClickListener.launchKuralList(item.getValue2().getId());
+                }
+
+
+            };
+            chip2.setOnClickListener(listener);
+            chip3.setOnClickListener(listener);
+            chip4.setOnClickListener(listener);
+
         }
 
         public void bind(Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item) {

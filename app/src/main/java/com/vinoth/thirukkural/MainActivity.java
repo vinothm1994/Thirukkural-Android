@@ -1,17 +1,19 @@
 package com.vinoth.thirukkural;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.vinoth.thirukkural.data.AppDataManager;
 import com.vinoth.thirukkural.data.local.DbUtils;
-import com.vinoth.thirukkural.data.local.KuralDbHelper;
 import com.vinoth.thirukkural.data.model.KuralChapter;
 import com.vinoth.thirukkural.data.model.KuralChapterGroup;
 import com.vinoth.thirukkural.data.model.KuralDetail;
 import com.vinoth.thirukkural.data.model.KuralSection;
 import com.vinoth.thirukkural.ui.home.HomeFragment;
+import com.vinoth.thirukkural.ui.home.KuralScreenListener;
+import com.vinoth.thirukkural.ui.kural_chapter_group_list.KuralChapterGroupFragment;
+import com.vinoth.thirukkural.ui.kural_chapter_list.KuralChapterFragment;
 import com.vinoth.thirukkural.ui.kural_detail.KuralDetailFragment;
+import com.vinoth.thirukkural.ui.kural_list.KuralListFragment;
+import com.vinoth.thirukkural.ui.kural_section_list.KuralSectionFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +32,9 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements KuralScreenListener {
 
     private static final String TAG = "MainActivity";
 
@@ -39,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         getSupportFragmentManager().beginTransaction().add(android.R.id.content,new HomeFragment(),"ddddd").commit();
+        addFragment(new KuralSectionFragment());
+
     }
 
 
@@ -145,4 +149,55 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void addFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, fragment, fragment.getTag())
+                .addToBackStack(null)
+                .commit();
+
+
+    }
+
+    @Override
+    public void launchSection() {
+        addFragment(new KuralSectionFragment());
+
+    }
+
+    @Override
+    public void launchChapterGroup() {
+        addFragment(KuralChapterFragment.getInstance(-1));
+    }
+
+    @Override
+    public void launchChapterGroup(int secId) {
+        addFragment(KuralChapterFragment.getInstance(secId));
+    }
+
+    @Override
+    public void launchChapter() {
+        addFragment(KuralChapterFragment.getInstance(-1));
+    }
+
+    @Override
+    public void launchChapter(int chapterGroupId) {
+        addFragment(KuralChapterFragment.getInstance(chapterGroupId));
+    }
+
+    @Override
+    public void launchKuralList(int chapterId) {
+        addFragment(KuralListFragment.getInstance(chapterId));
+    }
+
+    @Override
+    public void launchAllKuralList() {
+        addFragment(KuralListFragment.getInstance(-1));
+    }
+
+    @Override
+    public void launchKuralDetail(int kuralId) {
+        addFragment(KuralDetailFragment.getInstance(kuralId));
+    }
 }
