@@ -19,10 +19,20 @@
             app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.Toolbar
+                app:navigationIcon="@drawable/ic_arrow"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="6dp" />
+                android:elevation="6dp">
+
+                <TextView
+                    android:id="@+id/toolbar_tv"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                    android:layout_gravity="center_vertical"
+                    tools:text="title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

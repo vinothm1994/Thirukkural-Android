@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.AppDataManager;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,6 +68,11 @@ public class KuralChapterFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        TextView toolbar_tv=view.findViewById(R.id.toolbar_tv);
+        toolbar_tv.setText("Kural Section");
+        toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
+
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);
         sec_rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         AppDataManager appDataManager = AppDataManager.getInstance(getContext());

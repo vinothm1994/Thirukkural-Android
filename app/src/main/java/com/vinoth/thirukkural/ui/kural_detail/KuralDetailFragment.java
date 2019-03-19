@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -70,6 +71,11 @@ public class KuralDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        TextView toolbar_tv=view.findViewById(R.id.toolbar_tv);
+        toolbar_tv.setText("Kural Section");
+        toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
+
         ChipGroup chip_gp = view.findViewById(R.id.chip_gp);
         TextView kutal_dtl_tv = view.findViewById(R.id.kutal_dtl_tv);
         TextView kutal_dtl_no_tv = view.findViewById(R.id.kutal_dtl_no_tv);

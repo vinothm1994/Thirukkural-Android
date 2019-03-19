@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        addFragment(new KuralSectionFragment());
+        replaceFragment(new KuralSectionFragment());
 
     }
 
@@ -145,6 +145,15 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
             String jsonString = writer.toString();
             return new JSONObject(jsonString);
         }
+
+
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, fragment, fragment.getTag())
+                .commit();
 
 
     }
