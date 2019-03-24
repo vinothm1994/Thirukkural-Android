@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replaceFragment(new KuralSectionFragment());
+        replaceFragment(new HomeFragment());
 
     }
 
@@ -177,12 +177,12 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
 
     @Override
     public void launchChapterGroup() {
-        addFragment(KuralChapterFragment.getInstance(-1));
+        addFragment(KuralChapterGroupFragment.getInstance(-1));
     }
 
     @Override
     public void launchChapterGroup(int secId) {
-        addFragment(KuralChapterFragment.getInstance(secId));
+        addFragment(KuralChapterGroupFragment.getInstance(secId));
     }
 
     @Override

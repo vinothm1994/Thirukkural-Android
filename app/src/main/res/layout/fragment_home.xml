@@ -19,20 +19,20 @@
             app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.Toolbar
-                app:navigationIcon="@drawable/ic_arrow"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="6dp">
+                android:elevation="6dp"
+                app:navigationIcon="@drawable/ic_arrow">
 
                 <TextView
-                    android:textColor="@color/white"
                     android:id="@+id/toolbar_tv"
-                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                    android:layout_gravity="center_vertical"
-                    android:text="tkt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                    android:textColor="@color/white" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -43,6 +43,7 @@
         android:id="@+id/sec_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        app:layout_behavior="@string/layout_behavior" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

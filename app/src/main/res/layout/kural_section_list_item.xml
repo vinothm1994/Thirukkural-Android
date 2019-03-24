@@ -8,6 +8,7 @@
     android:orientation="horizontal">
 
     <TextView
+        android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
         android:id="@+id/sec_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,8 +17,11 @@
 
 
     <TextView
+        android:drawableTint="#A8646464"
+        android:drawableRight="@drawable/ic_nav_next"
+        android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
         android:id="@+id/sec_title_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:textColor="@color/black"

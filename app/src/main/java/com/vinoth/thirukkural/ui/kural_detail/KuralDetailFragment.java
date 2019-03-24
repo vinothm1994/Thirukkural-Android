@@ -73,12 +73,11 @@ public class KuralDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView toolbar_tv=view.findViewById(R.id.toolbar_tv);
-        toolbar_tv.setText("Kural Section");
+        toolbar_tv.setText("Kural Detail");
         toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
 
         ChipGroup chip_gp = view.findViewById(R.id.chip_gp);
         TextView kutal_dtl_tv = view.findViewById(R.id.kutal_dtl_tv);
-        TextView kutal_dtl_no_tv = view.findViewById(R.id.kutal_dtl_no_tv);
 
         AppDataManager appDataManager=new AppDataManager(getContext());
         KuralDetail kuralDetail = appDataManager.getAllKuralDetailsByKuralId(id);
@@ -86,8 +85,6 @@ public class KuralDetailFragment extends Fragment {
         KuralChapterGroup chapterGroup = appDataManager.getAllChaptergroupsById(kuralChapter.getChapterGroupId());
         KuralSection kuralSection = appDataManager.getAllkuralSection(chapterGroup.getSectionId());
         kutal_dtl_tv.setText(kuralDetail.getKuralInTamil());
-
-        kutal_dtl_no_tv.setText("kural-"+id);
 
 
         Chip chip=new Chip(getContext());
@@ -115,6 +112,9 @@ public class KuralDetailFragment extends Fragment {
 
         TextView sp_txt=view.findViewById(R.id.sp_txt);
         sp_txt.setText(kuralDetail.getSpExp());
+
+        TextView eng_txt=view.findViewById(R.id.eng_txt);
+        eng_txt.setText(kuralDetail.getEngExp());
 
 
 

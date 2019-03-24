@@ -20,14 +20,14 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class KuralAdapter extends
-        RecyclerView.Adapter<KuralAdapter.ViewHolder> {
+public class KuralAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = KuralAdapter.class.getSimpleName();
 
     private Context context;
     private List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list;
     private KuralScreenListener onItemClickListener;
+    public boolean showHeader = false;
 
     public KuralAdapter(Context context, List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list,
                         KuralScreenListener onItemClickListener) {
@@ -42,26 +42,57 @@ public class KuralAdapter extends
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.kural_list_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        if (viewType == 0) {
+            View view = inflater.inflate(R.layout.kural_home_header, parent, false);
+            HeaderViewHolder headerViewHolder = new HeaderViewHolder(view);
+            return headerViewHolder;
+        } else {
+            View view = inflater.inflate(R.layout.kural_list_item, parent, false);
+            ViewHolder viewHolder = new ViewHolder(view);
+            return viewHolder;
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item = list.get(position);
-        holder.bind(item);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ViewHolder) {
+            int tempPos=showHeader?position-1:position;
+            Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item = list.get(tempPos);
+            ViewHolder vh = (ViewHolder) holder;
+            vh.bind(item);
+        } else {
+
+        }
+
+
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (showHeader)
+            return list.size() + 1;
+        else
+            return list.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (showHeader && position == 0) {
+            return 0;
+        } else
+            return 1;
 
+    }
+
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        public HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {

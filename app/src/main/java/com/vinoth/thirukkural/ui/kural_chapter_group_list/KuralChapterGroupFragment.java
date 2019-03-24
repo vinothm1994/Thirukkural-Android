@@ -72,7 +72,7 @@ public class KuralChapterGroupFragment extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView toolbar_tv=view.findViewById(R.id.toolbar_tv);
-        toolbar_tv.setText("Kural Section");
+        toolbar_tv.setText("Kural Chapter Group");
         toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
 
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);

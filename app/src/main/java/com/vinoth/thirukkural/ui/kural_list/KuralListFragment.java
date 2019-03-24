@@ -78,7 +78,7 @@ public class KuralListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView toolbar_tv=view.findViewById(R.id.toolbar_tv);
-        toolbar_tv.setText("Kural Section");
+        toolbar_tv.setText("Kurals");
         toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
 
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);

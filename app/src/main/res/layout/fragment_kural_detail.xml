@@ -26,6 +26,7 @@
                 android:elevation="6dp">
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/toolbar_tv"
                     android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                     android:layout_gravity="center_vertical"
@@ -45,54 +46,61 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
+                tools:text="@tools:sample/full_names"
+                android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
                 android:id="@+id/kutal_dtl_tv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto" />
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/kutal_dtl_no_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="- 210" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:elevation="3sp" />
+
 
             <com.google.android.material.chip.ChipGroup
+                android:layout_marginTop="8dp"
                 android:id="@+id/chip_gp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </com.google.android.material.chip.ChipGroup>
 
+            <View
+                android:layout_marginTop="5dp"
+                android:background="@color/text_color_tertiary"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                />
+
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:id="@+id/tamil_exp_ly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mv Exp" />
 
                 <TextView
+                    tools:text="@tools:sample/full_names"
+                    android:textAppearance="@style/TextAppearance.IOSched.Tag"
                     android:id="@+id/mv_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
 
                 <TextView
+                    android:layout_marginTop="3dp"
+                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MK Exp" />
@@ -104,12 +112,26 @@
 
 
                 <TextView
+                    android:layout_marginTop="3dp"
+                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SP Exp" />
 
                 <TextView
                     android:id="@+id/sp_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English Exp" />
+
+                <TextView
+                    android:id="@+id/eng_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
