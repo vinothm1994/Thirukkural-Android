@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.model.KuralChapter;
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DbUtils {
@@ -118,6 +116,7 @@ public class DbUtils {
         int mkcolumnIndex = cursor.getColumnIndex(DBContract.KuralContract.MK_EXP);
         int spcolumnIndex = cursor.getColumnIndex(DBContract.KuralContract.SP_EXP);
         int coucolumnIndex = cursor.getColumnIndex(DBContract.KuralContract.COUPLET);
+        int bookmarkIndex = cursor.getColumnIndex(DBContract.KuralContract.BOOKMARK);
         while (cursor.moveToNext()) {
             KuralDetail kuralDetail = new KuralDetail();
             int id = cursor.getColumnIndex(DBContract.KuralContract.ID);
@@ -131,15 +130,16 @@ public class DbUtils {
             kuralDetail.setMkExp(cursor.getString(mkcolumnIndex));
             kuralDetail.setSpExp(cursor.getString(spcolumnIndex));
             kuralDetail.setCouplet(cursor.getString(coucolumnIndex));
+            kuralDetail.setBookmark(cursor.getInt(bookmarkIndex) == 1);
             kuralDetails.add(kuralDetail);
         }
         return kuralDetails;
     }
 
-    public static List<KuralSection> parserSection(Cursor cursor){
-        List<KuralSection> kuralSections=new ArrayList<>();
-        while (cursor.moveToNext()){
-            KuralSection kuralSection=new KuralSection();
+    public static List<KuralSection> parserSection(Cursor cursor) {
+        List<KuralSection> kuralSections = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            KuralSection kuralSection = new KuralSection();
             kuralSection.setId(cursor.getInt(cursor.getColumnIndex(DBContract.SectionContract.ID)));
             kuralSection.setName(cursor.getString(cursor.getColumnIndex(DBContract.SectionContract.ENGLISH)));
             kuralSection.setTamilName(cursor.getString(cursor.getColumnIndex(DBContract.SectionContract.TAMIL)));
@@ -149,10 +149,10 @@ public class DbUtils {
         return kuralSections;
     }
 
-    public static List<KuralChapterGroup> parserChaptergroups(Cursor cursor){
-        List<KuralChapterGroup> kuralChapterGroups =new ArrayList<>();
-        while (cursor.moveToNext()){
-            KuralChapterGroup kuralSection=new KuralChapterGroup();
+    public static List<KuralChapterGroup> parserChaptergroups(Cursor cursor) {
+        List<KuralChapterGroup> kuralChapterGroups = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            KuralChapterGroup kuralSection = new KuralChapterGroup();
             kuralSection.setId(cursor.getInt(cursor.getColumnIndex(DBContract.ChapterGroupContract.ID)));
             kuralSection.setSectionId(cursor.getInt(cursor.getColumnIndex(DBContract.ChapterGroupContract.SECTION_ID)));
             kuralSection.setName(cursor.getString(cursor.getColumnIndex(DBContract.ChapterGroupContract.ENGLISH)));
@@ -163,15 +163,15 @@ public class DbUtils {
         return kuralChapterGroups;
     }
 
-    public static List<KuralChapter> parserChapter(Cursor cursor){
-        List<KuralChapter> kuralChaptergroups=new ArrayList<>();
+    public static List<KuralChapter> parserChapter(Cursor cursor) {
+        List<KuralChapter> kuralChaptergroups = new ArrayList<>();
         int columnIndex = cursor.getColumnIndex(DBContract.ChapterContract.ID);
         int columnIndex1 = cursor.getColumnIndex(DBContract.ChapterContract.CHAPTER_GROUP_ID);
         int columnIndex2 = cursor.getColumnIndex(DBContract.ChapterContract.ENGLISH);
         int columnIndex3 = cursor.getColumnIndex(DBContract.ChapterContract.TAMIL);
         int columnIndex4 = cursor.getColumnIndex(DBContract.ChapterContract.TRANSLITERATION);
-        while (cursor.moveToNext()){
-            KuralChapter kuralSection=new KuralChapter();
+        while (cursor.moveToNext()) {
+            KuralChapter kuralSection = new KuralChapter();
             kuralSection.setId(cursor.getInt(columnIndex));
             kuralSection.setChapterGroupId(cursor.getInt(columnIndex1));
             kuralSection.setName(cursor.getString(columnIndex2));

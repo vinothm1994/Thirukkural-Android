@@ -2,49 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#e0e0e0"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        cardElevation="8dp"
-        app:cardCornerRadius="7dp"
+    <LinearLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/search_tv"
+            android:foreground="?selectableItemBackground"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_search"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/search_bg"
+            android:elevation="2dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            style="@style/Widget.IOSched.BorderlessButton"
+            android:text="@string/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/section_btn"
+            style="@style/Widget.IOSched.BorderlessButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:text="@string/sections" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.IOSched.BorderlessButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Section" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chap_gr_btn"
+            style="@style/Widget.IOSched.BorderlessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chapter_groups" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.IOSched.BorderlessButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="chapter Group" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chap_btn"
+            style="@style/Widget.IOSched.BorderlessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chapters" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.IOSched.BorderlessButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chapter" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.IOSched.BorderlessButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All Kurals" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/kural_btn"
+            style="@style/Widget.IOSched.BorderlessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kurals" />
 
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
+    </LinearLayout>
 </LinearLayout>

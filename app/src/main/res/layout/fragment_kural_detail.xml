@@ -79,6 +79,8 @@
 
             <LinearLayout
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:id="@+id/tamil_exp_ly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +90,7 @@
                     android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mv Exp" />
+                    android:text="@string/mv_exp" />
 
                 <TextView
                     tools:text="@tools:sample/full_names"
@@ -103,7 +105,7 @@
                     android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MK Exp" />
+                    android:text="@string/mk_exp" />
 
                 <TextView
                     android:id="@+id/mk_txt"
@@ -116,7 +118,7 @@
                     android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SP Exp" />
+                    android:text="@string/sp_exp" />
 
                 <TextView
                     android:id="@+id/sp_txt"
@@ -128,12 +130,30 @@
                     android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="English Exp" />
+                    android:text="@string/english_explanation" />
 
                 <TextView
                     android:id="@+id/eng_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_marginTop="3dp"
+                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transliteration:" />
+
+                <TextView
+                    android:id="@+id/tranlit_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"/>
+
 
 
             </LinearLayout>
@@ -145,17 +165,18 @@
 
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bar"
+        android:id="@+id/bottom_bar"
+        app:fabAlignmentMode="end"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         app:backgroundTint="?colorAccent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/bookmark_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_star"
-        app:layout_anchor="@+id/bar"
-        app:layout_anchorGravity="right|bottom" />
+        android:src="@drawable/ic_bookmark"
+        app:layout_anchor="@+id/bottom_bar"
+        app:layout_anchorGravity="right" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,26 +5,38 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:minHeight="?actionBarSize"
+    android:background="?selectableItemBackground"
     android:orientation="horizontal">
 
+
+
     <TextView
-        android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
         android:id="@+id/sec_tv"
+        android:drawableTint="#A8646464"
+        android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        tools:text="@tools:sample/lorem" />
+        android:layout_marginLeft="7dp"
+        android:textColor="@color/black"
+        tools:text="1" />
+
 
 
     <TextView
-        android:drawableTint="#A8646464"
-        android:drawableRight="@drawable/ic_nav_next"
+        android:layout_weight="1"
+        android:textStyle="normal"
         android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
         android:id="@+id/sec_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="7dp"
         android:textColor="@color/black"
         tools:text="@tools:sample/lorem" />
+
+    <ImageView
+        android:tint="#A8646464"
+        android:src="@drawable/ic_nav_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

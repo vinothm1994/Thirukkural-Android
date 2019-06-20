@@ -42,6 +42,7 @@ public interface DBContract {
         public final static String MK_EXP = "mk_exp";
         public final static String COUPLET = "couplet";
         public final static String ENG_EXP = "eng_exp";
+        public final static String BOOKMARK = "bookmark";
 
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">திருக்குறள்</string>
+    <string name="search">தேடல்</string>
+    <string name="sections">பால்கள்</string>
+    <string name="chapter_groups">இயல்கள்</string>
+    <string name="chapters">அதிகாரங்கள்</string>
+    <string name="kurals">குறள்கள்</string>
+    <string name="kural">குறள்</string>
+    <string name="kural_detail">குறள் விவரம்</string>
+
+    <string name="mv_exp">மு.வ உரை:</string>
+    <string name="mk_exp">கலைஞர் உரை:</string>
+    <string name="sp_exp">சாலமன் பாப்பையா உரை:</string>
+    <string name="english_explanation">English Explanation:</string>
+
+
+    <string name="select_section">பால் தேர்ந்தெடு</string>
+    <string name="select_chapter_group">இயல் தேர்ந்தெடு</string>
+    <string name="select_chapter">அதிகாரம் தேர்ந்தெடு</string>
+
+</resources>

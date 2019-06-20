@@ -87,10 +87,41 @@ public class KuralAdapter extends RecyclerView.Adapter {
 
     }
 
-    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public class HeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemView.findViewById(R.id.search_tv).setOnClickListener(this);
+            itemView.findViewById(R.id.section_btn).setOnClickListener(this);
+            itemView.findViewById(R.id.chap_gr_btn).setOnClickListener(this);
+            itemView.findViewById(R.id.chap_btn).setOnClickListener(this);
+            itemView.findViewById(R.id.kural_btn).setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()){
+                case R.id.search_tv:
+                    onItemClickListener.launchSearch();
+                    break;
+                case R.id.section_btn:
+                    onItemClickListener.launchSection();
+                    break;
+                case R.id.chap_gr_btn:
+                    onItemClickListener.launchChapterGroup();
+                    break;
+                case R.id.chap_btn:
+                    onItemClickListener.launchChapter();
+                    break;
+                case R.id.kural_btn:
+                    onItemClickListener.launchAllKuralList();
+                    break;
+            }
+
+
         }
     }
 
@@ -137,7 +168,7 @@ public class KuralAdapter extends RecyclerView.Adapter {
 
         public void bind(Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item) {
             kural_txt.setText(item.getValue3().getKuralInTamil());
-            chip1.setText("kural "+item.getValue3().getId());
+            chip1.setText(super.itemView.getContext().getText(R.string.kural)+" "+item.getValue3().getId());
             chip2.setText(item.getValue0().getTamilName());
             chip3.setText(item.getValue1().getTamilName());
             chip4.setText(item.getValue2().getTamilName());

@@ -18,5 +18,24 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="layout_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="layout_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="search">Search</string>
+    <string name="sections">Sections</string>
+    <string name="chapter_groups">Chapter Groups</string>
+    <string name="chapters">Chapters</string>
+    <string name="kurals">Kurals</string>
+    <string name="kural">Kural</string>
+    <string name="kural_detail">Kural Detail</string>
+
+    <string name="mv_exp">Mu. Varadharasanar\'s Explanation:</string>
+    <string name="mk_exp">Kalaignar\'s Explanation:</string>
+    <string name="sp_exp">Solomon Paapaiya\'s Explanation:</string>
+    <string name="english_explanation">English Explanation:</string>
+
+    <string name="select_section">Select Section</string>
+    <string name="select_chapter_group">Select ChapterGroup</string>
+    <string name="select_chapter">Select Chapter</string>
+
+
+
 </resources>

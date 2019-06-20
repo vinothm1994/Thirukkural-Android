@@ -18,5 +18,7 @@ public interface KuralScreenListener {
 
     void launchKuralDetail(int kuralId);
 
+    void launchSearch();
+
 
 }

@@ -12,6 +12,7 @@ public class KuralDetail {
     private String spExp;//
     private String mkExp;//
     private String couplet;//
+    private boolean bookmark;
 
    /* Number: 1,
 
@@ -21,19 +22,9 @@ public class KuralDetail {
     mv: "எழுத்துக்கள் எல்லாம் அகரத்தை அடிப்படையாக கொண்டிருக்கின்றன. அதுபோல உலகம் கடவுளை அடிப்படையாக கொண்டிருக்கிறது.",
     sp: "எழுத்துக்கள் எல்லாம் அகரத்தில் தொடங்குகின்றன; (அது போல) உலகம் கடவுளில் தொடங்குகிறது.",
     mk: "அகரம் எழுத்துக்களுக்கு முதன்மை; ஆதிபகவன், உலகில் வாழும் உயிர்களுக்கு முதன்மை",
-
-
-        couplet: "A, as its first of letters, every speech maintains;The "Primal Deity" is first through all the world's domains",
-
+        couplet: "A, as its first of letters, every speech maintains;The "Primal Deity" is first through all the world's domains"
     explanation: "As the letter A is the first of all letters, so the eternal God is first in the world",
-
-
-
 missing //    Translation: "'A' leads letters; the Ancient Lord Leads and lords the entire world",
-
-
-
-
     transliteration1: "Akara Mudhala Ezhuththellaam Aadhi",
     transliteration2: "Pakavan Mudhatre Ulaku",*/
 
@@ -116,5 +107,13 @@ missing //    Translation: "'A' leads letters; the Ancient Lord Leads and lords 
 
     public void setCouplet(String couplet) {
         this.couplet = couplet;
+    }
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
     }
 }

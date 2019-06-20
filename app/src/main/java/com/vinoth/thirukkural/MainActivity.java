@@ -1,5 +1,6 @@
 package com.vinoth.thirukkural;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.vinoth.thirukkural.data.local.DbUtils;
@@ -14,6 +15,8 @@ import com.vinoth.thirukkural.ui.kural_chapter_list.KuralChapterFragment;
 import com.vinoth.thirukkural.ui.kural_detail.KuralDetailFragment;
 import com.vinoth.thirukkural.ui.kural_list.KuralListFragment;
 import com.vinoth.thirukkural.ui.kural_section_list.KuralSectionFragment;
+import com.vinoth.thirukkural.ui.search.SearchFragment;
+import com.vinoth.thirukkural.utils.MyContextWrapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,10 +48,15 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
         replaceFragment(new HomeFragment());
 
     }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(MyContextWrapper.wrap(newBase));
+    }
+
 
 
     void insert() throws JSONException, IOException {
-        JSONObject jsonObject = getJson(R.raw.thirukkural_json);
+        JSONObject jsonObject = getJson(R.raw.thirukkural);//thirukkural_json
         JSONArray jsonArray = jsonObject.getJSONArray("kural");
         List<KuralDetail> kuralDetails = new ArrayList<>(jsonArray.length());
         Map<Integer, KuralDetail> detailMap = new HashMap<>(jsonArray.length());
@@ -70,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
             detailMap.put(kuralDetail.getId(), kuralDetail);
         }
 
-        JSONObject json = getJson(R.raw.kural_detail);
+        JSONObject json = getJson(R.raw.thirukkural);//kural_detail
         JSONArray array = json.getJSONObject("section").getJSONArray("detail");
         setSecArray(array, detailMap);
 
@@ -208,5 +216,10 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
     @Override
     public void launchKuralDetail(int kuralId) {
         addFragment(KuralDetailFragment.getInstance(kuralId));
+    }
+
+    @Override
+    public void launchSearch() {
+        addFragment(new SearchFragment());
     }
 }
