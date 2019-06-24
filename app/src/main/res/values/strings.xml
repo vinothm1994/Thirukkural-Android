@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Thirukkural</string>
 
+    <string name="thirukkural">Thirukkural</string>
+
     <string name="new_message_notification_title_template">New message: %1$s</string>
 
     <!-- TODO: remove this placeholder text -->
@@ -15,9 +17,6 @@
 
     <string name="action_share">Share</string>
     <string name="action_reply">Reply</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="layout_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="search">Search</string>
     <string name="sections">Sections</string>

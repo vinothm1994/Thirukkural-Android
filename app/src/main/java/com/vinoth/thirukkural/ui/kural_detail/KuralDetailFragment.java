@@ -25,6 +25,7 @@ import com.vinoth.thirukkural.data.model.KuralChapterGroup;
 import com.vinoth.thirukkural.data.model.KuralDetail;
 import com.vinoth.thirukkural.data.model.KuralSection;
 import com.vinoth.thirukkural.ui.home.KuralScreenListener;
+import com.vinoth.thirukkural.utils.ShareApp;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +69,13 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
         return inflater.inflate(R.layout.fragment_kural_detail, container, false);
     }
 
+    void share() {
+        ShareApp sh = new ShareApp(requireContext());
+        sh.saveBitmap(sh.getShareLeaderBoard(kuralDetail));
+        sh.shareIt();
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -78,6 +86,13 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
         MenuItem menuItem = bottom_bar.getMenu().add("Share");
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menuItem.setIcon(R.drawable.ic_share);
+        bottom_bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                share();
+                return true;
+            }
+        });
 
         toolbar_tv.setText(R.string.kural_detail);
         toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());

@@ -17,6 +17,7 @@ import com.vinoth.thirukkural.ui.kural_list.KuralListFragment;
 import com.vinoth.thirukkural.ui.kural_section_list.KuralSectionFragment;
 import com.vinoth.thirukkural.ui.search.SearchFragment;
 import com.vinoth.thirukkural.utils.MyContextWrapper;
+import com.vinoth.thirukkural.utils.ShareApp;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         replaceFragment(new HomeFragment());
+
 
     }
     @Override

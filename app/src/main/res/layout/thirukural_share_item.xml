@@ -8,9 +8,9 @@
     android:padding="5dp">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@mipmap/ic_launcher_round" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/thiruvalluvar" />
 
     <TextView
         android:id="@+id/kural_no"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="திருக்குறள்-0001"
-        android:textColor="@color/white"
+        android:textColor="#fff"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
         android:gravity="center"
         android:text="அகர முதல எழுத்தெல்லாம் ஆதி \n பகவன் முதற்றே உலகு"
         android:textColor="#532D08"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:textStyle="bold" />
 
 
@@ -38,11 +38,11 @@
         android:id="@+id/kural_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="அகரம் எழுத்துக்களுக்கு முதன்மை; ஆதிபகவன், உலகில் வாழும் உயிர்களுக்கு முதன்மை"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textColor="#000000"
+        android:textSize="19sp" />
 
 
 </LinearLayout>

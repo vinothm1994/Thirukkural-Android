@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">திருக்குறள்</string>
+    <string name="thirukkural">திருக்குறள்</string>
     <string name="search">தேடல்</string>
     <string name="sections">பால்கள்</string>
     <string name="chapter_groups">இயல்கள்</string>
