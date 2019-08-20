@@ -17,12 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.vinoth.thirukkural.MainActivity;
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.AppDataManager;
 import com.vinoth.thirukkural.data.model.KuralChapter;
 import com.vinoth.thirukkural.data.model.KuralChapterGroup;
 import com.vinoth.thirukkural.data.model.KuralDetail;
 import com.vinoth.thirukkural.data.model.KuralSection;
+import com.vinoth.thirukkural.ui.home.KuralScreenListener;
 
 import org.javatuples.Quartet;
 
@@ -31,7 +33,6 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SearchFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
 public class SearchFragment extends Fragment {
@@ -42,9 +43,16 @@ public class SearchFragment extends Fragment {
     private int mSectionId = 0;
     private int mChapterGroupId = 0;
     private int mChapterId = 0;
+    private KuralScreenListener listener;
 
     public SearchFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        listener = (KuralScreenListener) context;
     }
 
     @Override
@@ -117,11 +125,15 @@ public class SearchFragment extends Fragment {
         EditText search_et = view.findViewById(R.id.search_et);
 
         view.findViewById(R.id.search_btn).setOnClickListener((v) -> {
-
             List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list = AppDataManager.getInstance().searchKural(mSectionId, mChapterGroupId, mChapterId, search_et.getText().toString());
 
-            Toast.makeText(requireContext(), "" + list.size(), Toast.LENGTH_SHORT).show();
+            if (list.isEmpty()) {
+                Toast.makeText(requireContext(), getString(R.string.no_search_result), Toast.LENGTH_SHORT).show();
 
+            } else {
+                MainActivity mainActivity = (MainActivity) requireActivity();
+                mainActivity.launchSearchKuralList(list);
+            }
 
         });
     }
@@ -157,7 +169,7 @@ public class SearchFragment extends Fragment {
 
     private void setChapGroupUi() {
         List<KuralChapterGroup> sections = AppDataManager.getInstance().getAllChapterGroupsBySecId(mSectionId);
-
+        chapter_group_sp.setEnabled(mSectionId != 0);
         KuralChapterGroup kuralChapterGroup = new KuralChapterGroup();
         kuralChapterGroup.setName(getString(R.string.select_chapter_group));
         kuralChapterGroup.setTamilName(getString(R.string.select_chapter_group));
@@ -187,6 +199,7 @@ public class SearchFragment extends Fragment {
 
     private void setChapUi() {
         List<KuralChapter> kuralChapters = AppDataManager.getInstance().getAllChapterByGroupId(mChapterGroupId);
+        chapter_sp.setEnabled(mChapterGroupId != 0);
         KuralChapter element = new KuralChapter();
         element.setName(getString(R.string.select_chapter));
         element.setTamilName(getString(R.string.select_chapter));

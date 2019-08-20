@@ -3,6 +3,9 @@ package com.vinoth.thirukkural;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.vinoth.thirukkural.data.local.DbUtils;
 import com.vinoth.thirukkural.data.model.KuralChapter;
 import com.vinoth.thirukkural.data.model.KuralChapterGroup;
@@ -17,8 +20,8 @@ import com.vinoth.thirukkural.ui.kural_list.KuralListFragment;
 import com.vinoth.thirukkural.ui.kural_section_list.KuralSectionFragment;
 import com.vinoth.thirukkural.ui.search.SearchFragment;
 import com.vinoth.thirukkural.utils.MyContextWrapper;
-import com.vinoth.thirukkural.utils.ShareApp;
 
+import org.javatuples.Quartet;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,9 +38,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 public class MainActivity extends AppCompatActivity implements KuralScreenListener {
 
     private static final String TAG = "MainActivity";
@@ -46,15 +46,16 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        replaceFragment(new HomeFragment());
+        if (savedInstanceState == null)
+            replaceFragment(new HomeFragment());
 
 
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(MyContextWrapper.wrap(newBase));
     }
-
 
 
     void insert() throws JSONException, IOException {
@@ -214,6 +215,12 @@ public class MainActivity extends AppCompatActivity implements KuralScreenListen
     public void launchAllKuralList() {
         addFragment(KuralListFragment.getInstance(-1));
     }
+
+
+    public void launchSearchKuralList(List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> kurals) {
+        addFragment(KuralListFragment.getInstance(kurals));
+    }
+
 
     @Override
     public void launchKuralDetail(int kuralId) {

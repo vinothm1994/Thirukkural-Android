@@ -42,7 +42,9 @@ public class ShareApp {
         return dp * scale + 0.5f;
     }
 
-    public Bitmap getShareLeaderBoard(KuralDetail kuralDetail) {
+
+
+    private Bitmap getKuralBitmapImage(KuralDetail kuralDetail) {
         int widthPixels = (int) dp2px(400);
         int heightPixels = (int) dp2px(370);
         View customMarkerViewTitle = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.thirukural_share_item, null, false);
@@ -75,7 +77,7 @@ public class ShareApp {
     }
 
 
-    public void saveBitmap(Bitmap bitmap) {
+    private void saveBitmap(Bitmap bitmap) {
         imagePath = new File(context.getCacheDir() + "/share" + System.currentTimeMillis() + ".jpeg");
         FileOutputStream fos;
         try {
@@ -85,6 +87,7 @@ public class ShareApp {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 99, fos);
             fos.flush();
             fos.close();
+            bitmap.recycle();
         } catch (FileNotFoundException e) {
             Log.e("GREC", e.getMessage(), e);
         } catch (IOException e) {
@@ -92,14 +95,12 @@ public class ShareApp {
         }
     }
 
-    public void shareIt() {
-
+    private void shareIt() {
         Uri mCapturedImageURI = FileProvider.getUriForFile(context,
                 context.getPackageName() + ".provider", imagePath);
-
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("image/*");
-        String shareBody = "https://play.google.com/store/apps/details?id="+context.getPackageName();
+        String shareBody = "https://play.google.com/store/apps/details?id=" + context.getPackageName();
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Fingetips");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         sharingIntent.putExtra(Intent.EXTRA_STREAM, mCapturedImageURI);
@@ -112,5 +113,11 @@ public class ShareApp {
 
 
     }
+
+    public void shareKural(KuralDetail kuralDetail) {
+        saveBitmap(getKuralBitmapImage(kuralDetail));
+        shareIt();
+    }
+
 
 }

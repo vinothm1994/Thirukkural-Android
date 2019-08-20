@@ -2,6 +2,7 @@ package com.vinoth.thirukkural.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -26,11 +27,14 @@ import java.util.Map;
 
 public class AppDataManager {
     private static final String TAG = "AppDataManager";
+    public static boolean isEnglish = true;
     private static AppDataManager appDataManager;
     private final KuralDbHelper kuralDbHelper;
+    Context appContext;
 
     public AppDataManager(Context context) {
         KuralDbHelper.intiDb(context);
+        appContext = context.getApplicationContext();
         kuralDbHelper = KuralDbHelper.getInstance();
     }
 
@@ -266,6 +270,21 @@ public class AppDataManager {
         }
 
         return quartets;
+    }
+
+
+    public void setAppLanguage(boolean isEnglish) {
+        AppDataManager.isEnglish=isEnglish;
+        SharedPreferences pref = appContext.getSharedPreferences("app_setting", Context.MODE_PRIVATE);
+        pref.edit().putBoolean("is_app_lang_English", isEnglish).apply();
+
+    }
+
+    public boolean isAppLanguageEnglish() {
+        SharedPreferences pref = appContext.getSharedPreferences("app_setting", Context.MODE_PRIVATE);
+        boolean langEnglish = pref.getBoolean("is_app_lang_English", true);
+        AppDataManager.isEnglish=langEnglish;
+        return langEnglish;
     }
 
 

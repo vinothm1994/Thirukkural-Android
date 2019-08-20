@@ -20,5 +20,9 @@
     <string name="select_section">பால் தேர்ந்தெடு</string>
     <string name="select_chapter_group">இயல் தேர்ந்தெடு</string>
     <string name="select_chapter">அதிகாரம் தேர்ந்தெடு</string>
+    <string name="bookmark_added">Bookmark Added</string>
+    <string name="bookmark_removed">Bookmark Removed</string>
+    <string name="keyword">சொல்</string>
+    <string name="no_search_result">தேடல் முடிவு இல்லை</string>
 
 </resources>

@@ -59,7 +59,7 @@ public class KuralSectionFragment extends Fragment {
         toolbar.setNavigationOnClickListener(v->getActivity().onBackPressed());
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);
         sec_rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        AppDataManager appDataManager = AppDataManager.getInstance(getContext());
+        AppDataManager appDataManager = AppDataManager.getInstance();
         List<KuralSection> kuralSections = appDataManager.getAllkuralSection();
         kuralSectionAdapter = new KuralSectionAdapter(getContext(), kuralSections, listener);
         sec_rv.setAdapter(kuralSectionAdapter);

@@ -20,6 +20,7 @@ import com.vinoth.thirukkural.ui.kural_chapter_list.KuralChapterAdapter;
 
 import org.javatuples.Quartet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -59,6 +60,16 @@ public class KuralListFragment extends Fragment {
         return fragment;
     }
 
+
+    public static KuralListFragment getInstance( List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> kurals) {
+        KuralListFragment fragment = new KuralListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", -2);
+        bundle.putSerializable("data", new ArrayList<>(kurals));
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +94,15 @@ public class KuralListFragment extends Fragment {
 
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);
         sec_rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        AppDataManager appDataManager = AppDataManager.getInstance(getContext());
+        AppDataManager appDataManager = AppDataManager.getInstance();
         List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list;
         if (chapterId > 0) {
             list = appDataManager.getAllByChapterId(chapterId);
-        } else {
+        } else if (chapterId == -2){
+            ArrayList<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> kural= (ArrayList<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>>) getArguments().getSerializable("data");
+            list = kural;
+        }
+        else {
             list = appDataManager.getAll();
         }
         adapter=new KuralAdapter(getContext(),list,listener);

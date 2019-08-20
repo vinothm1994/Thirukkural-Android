@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.chip.Chip;
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.model.KuralChapter;
@@ -17,17 +20,13 @@ import org.javatuples.Quartet;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class KuralAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = KuralAdapter.class.getSimpleName();
-
+    public boolean showHeader = false;
     private Context context;
     private List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list;
     private KuralScreenListener onItemClickListener;
-    public boolean showHeader = false;
 
     public KuralAdapter(Context context, List<Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail>> list,
                         KuralScreenListener onItemClickListener) {
@@ -59,7 +58,7 @@ public class KuralAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder) {
-            int tempPos=showHeader?position-1:position;
+            int tempPos = showHeader ? position - 1 : position;
             Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item = list.get(tempPos);
             ViewHolder vh = (ViewHolder) holder;
             vh.bind(item);
@@ -103,7 +102,7 @@ public class KuralAdapter extends RecyclerView.Adapter {
         @Override
         public void onClick(View v) {
 
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.search_tv:
                     onItemClickListener.launchSearch();
                     break;
@@ -129,32 +128,32 @@ public class KuralAdapter extends RecyclerView.Adapter {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView kural_txt;
-        private final Chip chip1,chip2,chip3,chip4;
+        private final Chip chip1, chip2, chip3, chip4;
 
         public ViewHolder(View itemView) {
             super(itemView);
             kural_txt = itemView.findViewById(R.id.kural_txt);
-            chip1= itemView.findViewById(R.id.chip1);
-            chip2= itemView.findViewById(R.id.chip2);
-            chip3= itemView.findViewById(R.id.chip3);
-            chip4= itemView.findViewById(R.id.chip4);
+            chip1 = itemView.findViewById(R.id.chip1);
+            chip2 = itemView.findViewById(R.id.chip2);
+            chip3 = itemView.findViewById(R.id.chip3);
+            chip4 = itemView.findViewById(R.id.chip4);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.launchKuralDetail(list.get(getLayoutPosition()).getValue3().getId());
+                    int pos = showHeader ? getLayoutPosition() - 1 : getLayoutPosition();
+                    onItemClickListener.launchKuralDetail(list.get(pos).getValue3().getId());
                 }
             });
-            View.OnClickListener listener=v -> {
+            View.OnClickListener listener = v -> {
                 int id = v.getId();
+                int pos = showHeader ? getLayoutPosition() - 1 : getLayoutPosition();
                 Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item =
-                        list.get(getLayoutPosition());
-                if (id==R.id.chip2){
+                        list.get(pos);
+                if (id == R.id.chip2) {
                     onItemClickListener.launchChapterGroup(item.getValue0().getId());
-                }
-                else if (id==R.id.chip3){
+                } else if (id == R.id.chip3) {
                     onItemClickListener.launchChapter(item.getValue1().getId());
-                }
-                else if (id==R.id.chip4){
+                } else if (id == R.id.chip4) {
                     onItemClickListener.launchKuralList(item.getValue2().getId());
                 }
 
@@ -168,7 +167,7 @@ public class KuralAdapter extends RecyclerView.Adapter {
 
         public void bind(Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item) {
             kural_txt.setText(item.getValue3().getKuralInTamil());
-            chip1.setText(super.itemView.getContext().getText(R.string.kural)+" "+item.getValue3().getId());
+            chip1.setText(super.itemView.getContext().getText(R.string.kural) + " " + item.getValue3().getId());
             chip2.setText(item.getValue0().getTamilName());
             chip3.setText(item.getValue1().getTamilName());
             chip4.setText(item.getValue2().getTamilName());

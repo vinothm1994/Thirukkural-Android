@@ -12,12 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.vinoth.thirukkural.R;
 import com.vinoth.thirukkural.data.AppDataManager;
 import com.vinoth.thirukkural.data.model.KuralChapter;
@@ -36,6 +38,7 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
     private int id;
     private KuralDetail kuralDetail;
     private KuralScreenListener listener;
+    private NestedScrollView nestedScrollView;
 
     public KuralDetailFragment() {
         // Required empty public constructor
@@ -69,16 +72,16 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
         return inflater.inflate(R.layout.fragment_kural_detail, container, false);
     }
 
-    void share() {
+    private void share() {
         ShareApp sh = new ShareApp(requireContext());
-        sh.saveBitmap(sh.getShareLeaderBoard(kuralDetail));
-        sh.shareIt();
+        sh.shareKural(kuralDetail);
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        nestedScrollView = view.findViewById(R.id.nestedScrollView);
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView toolbar_tv = view.findViewById(R.id.toolbar_tv);
         bookmark_fab = view.findViewById(R.id.bookmark_fab);
@@ -162,6 +165,13 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
         kuralDetail.setBookmark(!kuralDetail.isBookmark());
         setBookmarkUi();
         AppDataManager.getInstance().updateBookmark(kuralDetail.getId(), kuralDetail.isBookmark());
+        showMessage(getString(kuralDetail.isBookmark() ? R.string.bookmark_added : R.string.bookmark_removed));
 
+    }
+
+    void showMessage(String message) {
+
+        Snackbar.make(bookmark_fab, message, Snackbar.LENGTH_SHORT)
+                .show();
     }
 }

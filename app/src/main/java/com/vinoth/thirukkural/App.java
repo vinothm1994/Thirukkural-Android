@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.vinoth.thirukkural.data.AppDataManager;
 import com.vinoth.thirukkural.data.local.DbUtils;
 import com.vinoth.thirukkural.data.local.KuralDbHelper;
 
@@ -12,9 +13,6 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class App extends Application {
-    public static boolean isAppLanTamil() {
-        return true;
-    }
 
     @Override
     public void onCreate() {
@@ -27,6 +25,7 @@ public class App extends Application {
         }
         KuralDbHelper.intiDb(this);
         KuralDbHelper.getInstance().getReadableDatabase();
+        AppDataManager.getInstance(this);
     }
 
 }

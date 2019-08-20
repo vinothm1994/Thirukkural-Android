@@ -21,7 +21,7 @@
             android:elevation="2dp"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            style="@style/Widget.IOSched.BorderlessButton"
+            style="@style/Widget.Kural.BorderlessButton"
             android:text="@string/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -29,28 +29,28 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/section_btn"
-            style="@style/Widget.IOSched.BorderlessButton"
+            style="@style/Widget.Kural.BorderlessButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sections" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/chap_gr_btn"
-            style="@style/Widget.IOSched.BorderlessButton"
+            style="@style/Widget.Kural.BorderlessButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chapter_groups" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/chap_btn"
-            style="@style/Widget.IOSched.BorderlessButton"
+            style="@style/Widget.Kural.BorderlessButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chapters" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/kural_btn"
-            style="@style/Widget.IOSched.BorderlessButton"
+            style="@style/Widget.Kural.BorderlessButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/kurals" />

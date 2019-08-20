@@ -6,6 +6,8 @@ import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.os.Build;
 
+import com.vinoth.thirukkural.data.AppDataManager;
+
 import java.util.Locale;
 
 public class MyContextWrapper extends ContextWrapper {
@@ -18,7 +20,7 @@ public class MyContextWrapper extends ContextWrapper {
 
     @SuppressWarnings("deprecation")
     public static ContextWrapper wrap(Context context) {
-
+        enableEnglish = AppDataManager.getInstance().isAppLanguageEnglish();
         String language;
 
         if (!enableEnglish) {
@@ -34,7 +36,7 @@ public class MyContextWrapper extends ContextWrapper {
         } else {
             sysLocale = getSystemLocaleLegacy(config);
         }
-        if (!language.equals("") && !sysLocale.getLanguage().equals(language)) {
+        if (!sysLocale.getLanguage().equals(language)) {
             Locale locale = new Locale(language);
             Locale.setDefault(locale);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

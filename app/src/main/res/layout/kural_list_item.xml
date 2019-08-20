@@ -10,7 +10,7 @@
     android:padding="5dp">
 
     <TextView
-        android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
+        android:textAppearance="@style/TextAppearance.Kural.SessionTitle"
         android:id="@+id/kural_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

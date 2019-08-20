@@ -77,7 +77,7 @@ public class KuralChapterGroupFragment extends Fragment {
 
         RecyclerView sec_rv = view.findViewById(R.id.sec_rv);
         sec_rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        AppDataManager appDataManager = AppDataManager.getInstance(getContext());
+        AppDataManager appDataManager = AppDataManager.getInstance();
 
         List<KuralChapterGroup> kuralChapterGroups;
         if (secId > 0)

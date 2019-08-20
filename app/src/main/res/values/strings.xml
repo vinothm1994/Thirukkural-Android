@@ -3,10 +3,10 @@
 
     <string name="thirukkural">Thirukkural</string>
 
-    <string name="new_message_notification_title_template">New message: %1$s</string>
+    <string name="new_message_notification_title_template" translatable="false">New message: %1$s</string>
 
     <!-- TODO: remove this placeholder text -->
-    <string name="new_message_notification_placeholder_text_template">You said %1$s and lorem ipsum
+    <string name="new_message_notification_placeholder_text_template" translatable="false">You said %1$s and lorem ipsum
         dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
         semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
         Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
@@ -15,8 +15,8 @@
         tortor.
     </string>
 
-    <string name="action_share">Share</string>
-    <string name="action_reply">Reply</string>
+    <string name="action_share" translatable="false">Share</string>
+    <string name="action_reply" translatable="false">Reply</string>
     <string name="layout_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="search">Search</string>
     <string name="sections">Sections</string>
@@ -34,7 +34,10 @@
     <string name="select_section">Select Section</string>
     <string name="select_chapter_group">Select ChapterGroup</string>
     <string name="select_chapter">Select Chapter</string>
-
+    <string name="bookmark_added">Bookmark Added</string>
+    <string name="bookmark_removed">Bookmark Removed</string>
+    <string name="keyword">keyword</string>
+    <string name="no_search_result">No Search Result</string>
 
 
 </resources>

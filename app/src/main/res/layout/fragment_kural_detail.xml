@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
+    android:id="@+id/container_ly"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -42,7 +43,6 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -53,7 +53,7 @@
 
             <TextView
                 tools:text="@tools:sample/full_names"
-                android:textAppearance="@style/TextAppearance.IOSched.SessionTitle"
+                android:textAppearance="@style/TextAppearance.Kural.SessionTitle"
                 android:id="@+id/kutal_dtl_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -87,14 +87,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:textAppearance="@style/TextAppearance.Kural.KuralExpHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mv_exp" />
 
                 <TextView
+                    android:textAppearance="@style/TextAppearance.KuralDetail"
                     tools:text="@tools:sample/full_names"
-                    android:textAppearance="@style/TextAppearance.IOSched.Tag"
                     android:id="@+id/mv_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -102,12 +102,14 @@
 
                 <TextView
                     android:layout_marginTop="3dp"
-                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:textAppearance="@style/TextAppearance.Kural.KuralExpHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mk_exp" />
 
                 <TextView
+                    tools:text="@tools:sample/full_names"
+                    android:textAppearance="@style/TextAppearance.KuralDetail"
                     android:id="@+id/mk_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -115,24 +117,29 @@
 
                 <TextView
                     android:layout_marginTop="3dp"
-                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:textAppearance="@style/TextAppearance.Kural.KuralExpHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sp_exp" />
 
                 <TextView
+                    tools:text="@tools:sample/full_names"
+                    android:textAppearance="@style/TextAppearance.KuralDetail"
                     android:id="@+id/sp_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_marginTop="3dp"
-                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:textAppearance="@style/TextAppearance.Kural.KuralExpHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/english_explanation" />
 
                 <TextView
+                    tools:text="@tools:sample/full_names"
+
+                    android:textAppearance="@style/TextAppearance.KuralDetail"
                     android:id="@+id/eng_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -140,12 +147,13 @@
 
                 <TextView
                     android:layout_marginTop="3dp"
-                    android:textAppearance="@style/TextAppearance.IOSched.SpeakerTitle"
+                    android:textAppearance="@style/TextAppearance.Kural.KuralExpHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Transliteration:" />
 
                 <TextView
+                    android:textAppearance="@style/TextAppearance.KuralDetail"
                     android:id="@+id/tranlit_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -177,6 +185,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_bookmark"
-        app:layout_anchor="@+id/bottom_bar"
+        app:layout_anchor="@id/bottom_bar"
         app:layout_anchorGravity="right" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
