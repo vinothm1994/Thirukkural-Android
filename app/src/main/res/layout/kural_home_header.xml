@@ -12,16 +12,18 @@
         android:orientation="vertical">
 
         <TextView
+            android:textColor="@color/indigo"
             android:id="@+id/search_tv"
-            android:foreground="?selectableItemBackground"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_search"
+            android:textStyle="bold"
             android:layout_marginTop="3dp"
             android:background="@drawable/search_bg"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             android:elevation="2dp"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            style="@style/Widget.Kural.BorderlessButton"
             android:text="@string/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

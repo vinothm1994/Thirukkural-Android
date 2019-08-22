@@ -29,6 +29,8 @@ import com.vinoth.thirukkural.data.model.KuralSection;
 import com.vinoth.thirukkural.ui.home.KuralScreenListener;
 import com.vinoth.thirukkural.utils.ShareApp;
 
+import static com.vinoth.thirukkural.data.AppDataManager.isEnglish;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -108,24 +110,21 @@ public class KuralDetailFragment extends Fragment implements View.OnClickListene
         KuralChapter kuralChapter = appDataManager.getAllChapterById(kuralDetail.getChapterId());
         KuralChapterGroup chapterGroup = appDataManager.getAllChaptergroupsById(kuralChapter.getChapterGroupId());
         KuralSection kuralSection = appDataManager.getAllkuralSection(chapterGroup.getSectionId());
-        kutal_dtl_tv.setText(kuralDetail.getKuralInTamil());
-
-
+        kutal_dtl_tv.setText(isEnglish?kuralDetail.getKuralInEng():kuralDetail.getKuralInTamil());
         Chip chip = new Chip(getContext());
         chip.setText(getString(R.string.kural) + "-" + id);
         chip_gp.addView(chip);
 
         chip = new Chip(getContext());
-        chip.setText(kuralChapter.getTamilName());
-        chip_gp.addView(chip);
-
-
-        chip = new Chip(getContext());
-        chip.setText(chapterGroup.getTamilName());
+        chip.setText(isEnglish?kuralChapter.getName():kuralChapter.getTamilName());
         chip_gp.addView(chip);
 
         chip = new Chip(getContext());
-        chip.setText(kuralSection.getTamilName());
+        chip.setText(isEnglish?chapterGroup.getName():chapterGroup.getTamilName());
+        chip_gp.addView(chip);
+
+        chip = new Chip(getContext());
+        chip.setText(isEnglish?kuralSection.getName():kuralSection.getTamilName());
         chip_gp.addView(chip);
 
         TextView mv_txt = view.findViewById(R.id.mv_txt);

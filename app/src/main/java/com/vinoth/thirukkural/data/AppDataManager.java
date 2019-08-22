@@ -282,7 +282,7 @@ public class AppDataManager {
 
     public boolean isAppLanguageEnglish() {
         SharedPreferences pref = appContext.getSharedPreferences("app_setting", Context.MODE_PRIVATE);
-        boolean langEnglish = pref.getBoolean("is_app_lang_English", true);
+        boolean langEnglish = pref.getBoolean("is_app_lang_English", false);
         AppDataManager.isEnglish=langEnglish;
         return langEnglish;
     }

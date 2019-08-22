@@ -20,6 +20,8 @@ import org.javatuples.Quartet;
 
 import java.util.List;
 
+import static com.vinoth.thirukkural.data.AppDataManager.isEnglish;
+
 public class KuralAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = KuralAdapter.class.getSimpleName();
@@ -166,11 +168,11 @@ public class KuralAdapter extends RecyclerView.Adapter {
         }
 
         public void bind(Quartet<KuralSection, KuralChapterGroup, KuralChapter, KuralDetail> item) {
-            kural_txt.setText(item.getValue3().getKuralInTamil());
+            kural_txt.setText(isEnglish?item.getValue3().getKuralInEng():item.getValue3().getKuralInTamil());
             chip1.setText(super.itemView.getContext().getText(R.string.kural) + " " + item.getValue3().getId());
-            chip2.setText(item.getValue0().getTamilName());
-            chip3.setText(item.getValue1().getTamilName());
-            chip4.setText(item.getValue2().getTamilName());
+            chip2.setText(isEnglish?item.getValue0().getName():item.getValue0().getTamilName());
+            chip3.setText(isEnglish?item.getValue1().getName():item.getValue1().getTamilName());
+            chip4.setText(isEnglish?item.getValue2().getName():item.getValue2().getTamilName());
         }
     }
 

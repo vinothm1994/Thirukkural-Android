@@ -14,6 +14,8 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.vinoth.thirukkural.data.AppDataManager.isEnglish;
+
 public class KuralChapterAdapter extends
         RecyclerView.Adapter<KuralChapterAdapter.ViewHolder> {
 
@@ -73,7 +75,7 @@ public class KuralChapterAdapter extends
 
         public void bind(final KuralChapter model) {
             sec_tv.setText(model.getId()+"");
-            sec_title_tv.setText(model.getTamilName());
+            sec_title_tv.setText(isEnglish?model.getName():model.getTamilName());
 
         }
     }
